@@ -4,7 +4,6 @@ public class Vector3d {
 
     double x, y, z;
 
-    // unit vector
     public Vector3d(double x, double y, double z) {
         this.x = x;
         this.y = y;
