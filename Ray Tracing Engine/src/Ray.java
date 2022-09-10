@@ -7,8 +7,7 @@ public class Ray {
     Vector3d origin, direction, intersectionPoint, hitNormal;
     private static final double EPSILON = 0.0000001;
 
-    public Ray() {
-    }
+    public Ray() {}
 
     public Ray(Vector3d origin, Vector3d direction) {
         this.origin = origin;
@@ -21,15 +20,11 @@ public class Ray {
         Vector3d vertex1 = new Vector3d(inTriangle.B.getX(), inTriangle.B.getY(), inTriangle.B.getZ());
         Vector3d vertex2 = new Vector3d(inTriangle.C.getX(), inTriangle.C.getY(), inTriangle.C.getZ());
 
-        Vector3d h;
-        Vector3d s;
-        Vector3d q;
-
         double a, f, u, v;
         Vector3d edge1 = vertex1.subtract(vertex0);
         Vector3d edge2 = vertex2.subtract(vertex0);
 
-        h = ray.direction.cross(edge2);
+        Vector3d h = ray.direction.cross(edge2);
         a = edge1.dot(h);
 
         if (a > -EPSILON && a < EPSILON) {
@@ -37,14 +32,14 @@ public class Ray {
         }
 
         f = 1.0 / a;
-        s = ray.origin.subtract(vertex0);
+        Vector3d s = ray.origin.subtract(vertex0);
         u = f * (s.dot(h));
 
         if (u < 0.0 || u > 1.0) {
             return false;
         }
 
-        q = s.cross(edge1);
+        Vector3d q = s.cross(edge1);
         v = f * ray.direction.dot(q);
 
         if (v < 0.0 || u + v > 1.0) {
@@ -78,6 +73,5 @@ public class Ray {
         }
         return false;
     }
-
 
 }
